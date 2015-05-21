@@ -1,7 +1,7 @@
 package core;
 import parser.Parser;
 
-public class PCMain {
+public class PVMain {
 
 	public static void main(String[] args) {
 		if(args.length < 1) {
