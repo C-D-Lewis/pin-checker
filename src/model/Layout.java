@@ -2,22 +2,22 @@ package model;
 
 public class Layout {
 	
-	private static final String[] VALID_TYPES = {
-		"genericPin",
-		"calendarPin",
-		"weatherPin",
-		"sportsPin",
-		"genericNotification",
-		"genericReminder"
-	};
+	public static final String 
+		TYPE_GENERIC_PIN = "genericPin",
+		TYPE_CALENDAR_PIN = "calendarPin",
+		TYPE_WEATHER_PIN = "weatherPin",
+		TYPE_SPORTS_PIN = "sportsPin",
+		TYPE_GENERIC_NOTIFICATION = "genericNotification",
+		TYPE_GENERIC_REMINDER = "genericReminder";
 	
-	public static final int 
-		TYPE_GENERIC_PIN = 0,
-		TYPE_CALENDAR_PIN = 1,
-		TYPE_WEATHER_PIN = 2,
-		TYPE_SPORTS_PIN = 3,
-		TYPE_GENERIC_NOTIFICATION = 4,
-		TYPE_GENERIC_REMINDER = 5;
+	private static final String[] VALID_TYPES = {
+		TYPE_GENERIC_PIN,
+		TYPE_CALENDAR_PIN,
+		TYPE_WEATHER_PIN,
+		TYPE_SPORTS_PIN,
+		TYPE_GENERIC_NOTIFICATION,
+		TYPE_GENERIC_REMINDER
+	};
 	
 	public String type, title, subtitle, body, 
 		tinyIcon, smallIcon, largeIcon, 

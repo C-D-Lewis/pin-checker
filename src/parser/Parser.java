@@ -48,14 +48,14 @@ public class Parser {
 
 	private boolean checkRoot() {
 		// Check essential fields
-		testField(pinJson, "id");
+		mustExist(pinJson, "id");
 		pin.id = (String)pinJson.get("id");
 		
-		testField(pinJson, "layout");
+		mustExist(pinJson, "layout");
 		pin.layout = new Layout();
 		
 		// Check time format
-		testField(pinJson, "time");
+		mustExist(pinJson, "time");
 		String time = (String)pinJson.get("time");
 		if(!isISOTime(time)) return err("'time' is not in ISO format. e.g.; YYYY-MM-DDTHH:MM:SSZ");
 		pin.time = time;
@@ -66,22 +66,17 @@ public class Parser {
 	
 	private boolean checkLayout() {
 		JSONObject layout = (JSONObject)pinJson.get("layout");
-		testField(pinJson, "layout");
+		mustExist(pinJson, "layout");
 		
 		// Check pin type
-		testField(layout, "type");
+		mustExist(layout, "type");
 		String type = (String)layout.get("type");
-		if(!Layout.typeIsValid(type)) {
-			System.err.println("Pin layout 'type' is not one of the valid types.");
-			Layout.printValidTypes();
-			return false;
-		}
+		if(!Layout.typeIsValid(type)) return err("Pin layout 'type' is not one of the valid types.");
 		pin.layout.type = type;
 		
 		// Title is required
-		testField(layout, "title");
+		mustExist(layout, "title");
 		pin.layout.title = (String)layout.get("title");
-
 		
 		// Optional tinyIcon
 		if(layout.get("tinyIcon") != null) {
@@ -90,7 +85,7 @@ public class Parser {
 		
 		// Both sportsPin and weatherPin require largeIcon
 		if(type.equals(Layout.TYPE_SPORTS_PIN) || type.equals(Layout.TYPE_WEATHER_PIN)) {
-			testField(layout, "largeIcon");
+			mustExist(layout, "largeIcon");
 			pin.layout.largeIcon = (String)layout.get("largeIcon");
 		}
 		
@@ -153,12 +148,12 @@ public class Parser {
 		return false;
 	}
 	
-	private void testField(JSONObject object, String fieldName) {
+	private void mustExist(JSONObject object, String fieldName) {
 		if(object.get(fieldName) == null) {
 			System.err.println("Pin does not have '" + fieldName + "'!");
 			System.exit(1);
 		} else {
-			if(Runtime.VERBOSE) System.out.println("Field '" + fieldName + "' exists in object: " + object.toJSONString());
+			if(Runtime.VERBOSE) System.out.println("Field '" + fieldName + "' exists in object: \n" + object.toJSONString());
 		}
 	}
 }
