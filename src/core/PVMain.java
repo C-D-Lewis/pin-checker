@@ -8,6 +8,14 @@ public class PVMain {
 			System.err.println("Please provide a pin JSON file!");
 			System.exit(1);
 		} else if(args[0].contains(".json")) {
+			// Check other args
+			for(String s : args) {
+				if(s.contains("-v")) {
+					Runtime.VERBOSE = true;
+				}
+			}
+			
+			// Launch
 			new Parser(args[0]);
 		} else {
 			System.err.println("Please provide a .json file.");
