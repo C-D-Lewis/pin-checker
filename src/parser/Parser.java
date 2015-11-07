@@ -9,7 +9,7 @@ import model.Pin;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import core.Runtime;
+import core.Config;
 
 /**
  * Read input file, validate required fields, read data into Java model (model)
@@ -39,7 +39,7 @@ public class Parser {
 		JSONParser parser = new JSONParser();
 		Object json = parser.parse(new FileReader(input));
 		pinJson = (JSONObject)json;
-		if(Runtime.VERBOSE) System.out.println("Parsed: " + pinJson.toString());
+		if(Config.VERBOSE) System.out.println("Parsed: " + pinJson.toString());
 	}
 	
 	private boolean check() {
@@ -153,7 +153,7 @@ public class Parser {
 			System.err.println("Pin does not have '" + fieldName + "'!");
 			System.exit(1);
 		} else {
-			if(Runtime.VERBOSE) System.out.println("Field '" + fieldName + "' exists in object: \n" + object.toJSONString());
+			if(Config.VERBOSE) System.out.println("Field '" + fieldName + "' exists in object: \n" + object.toJSONString());
 		}
 	}
 }

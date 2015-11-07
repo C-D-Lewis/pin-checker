@@ -1,6 +1,6 @@
 package core;
 
-public class Runtime {
+public class Config {
 	
 	public static boolean VERBOSE = false;
 

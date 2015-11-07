@@ -11,7 +11,7 @@ public class PVMain {
 			// Check other args
 			for(String s : args) {
 				if(s.contains("-v")) {
-					Runtime.VERBOSE = true;
+					Config.VERBOSE = true;
 				}
 			}
 			
