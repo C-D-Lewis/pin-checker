@@ -1,10 +1,10 @@
-# pin-viewer
+# pin-checker
 
-Java app to validate and view Pebble timeline pins. 
+Java app to validate Pebble timeline pins.
 
 ## Usage
 
-Built it, then 
+Built it, then
 
 ```
 java -jar pinviewer.jar some_json_file.json
